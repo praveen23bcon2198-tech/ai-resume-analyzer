@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .box {
+            background: white;
+            width: 500px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: #f4f4f4;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .green {
+            color: green;
+        }
+
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2>Resume Analysis Result</h2>
+        
+        <h3>Resume Score: {{ score }}/100</h3>
+        <p><strong>Suggestion:</strong> {{ suggestion }}</p>
+
+        <h3 class="green">Skills Found</h3>
+        <ul>
+            {% for skill in found_skills %}
+                <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3 class="red">Missing Skills</h3>
+        <ul>
+            {% for skill in missing_skills %}
+                <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+
+        <br>
+        <a href="/">Analyze Another Resume</a>
+    </div>
+
+</body>
+</html>
