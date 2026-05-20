@@ -1,6 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Resume Analyzer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+    body{
+      min-height:100vh;display:flex;justify-content:center;align-items:center;
+      background: linear-gradient(-45deg,#667eea,#764ba2,#00c6ff,#0072ff);
+      background-size: 400% 400%;animation: gradientBG 10s ease infinite;
+      overflow:hidden;
+    }
+    @keyframes gradientBG{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+    .container{
+      width:500px;max-width:90%;padding:45px 35px;border-radius:25px;
+      background:rgba(255,255,255,0.14);backdrop-filter:blur(15px);
+      box-shadow:0 8px 35px rgba(0,0,0,0.25);text-align:center;color:white;
+      animation: fadeIn 1s ease;
+    }
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    h1{font-size:34px;margin-bottom:10px;}
+    p{font-size:15px;color:#eaeaea;margin-bottom:25px;}
+    .upload-box{
+      border:2px dashed rgba(255,255,255,0.8);padding:30px 20px;border-radius:18px;
+      cursor:pointer;transition:0.3s;margin-bottom:15px;
+    }
+    .upload-box:hover{background:rgba(255,255,255,0.12);transform:translateY(-3px);}
+    input[type=file]{display:none;}
+    .file-name{font-size:14px;color:#fff;margin-bottom:20px;min-height:20px;}
+    .btn{
+      background:linear-gradient(to right,#00c6ff,#0072ff);border:none;padding:13px 35px;
+      color:white;font-size:16px;font-weight:600;border-radius:30px;cursor:pointer;
+      transition:0.3s;box-shadow:0 4px 15px rgba(0,0,0,0.2);
+    }
+    .btn:hover{transform:scale(1.07);}
+    .icon{font-size:60px;margin-bottom:12px;}
+    .features{display:flex;justify-content:space-around;margin-top:25px;font-size:13px;opacity:0.95;}
+    .feature{background:rgba(255,255,255,0.1);padding:10px 12px;border-radius:12px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">🚀</div>
+    <h1>AI Resume Analyzer</h1>
+    <p>Upload your resume and get instant AI-powered skill analysis</p>
+
+    <form action="/analyze" method="post" enctype="multipart/form-data">
+      <label for="resume" class="upload-box">📂 Click to Upload Resume (PDF / DOCX)</label>
+      <input type="file" id="resume" name="resume" required>
+      <div class="file-name" id="fileName">No file selected</div>
+      <button type="submit" class="btn">Analyze Resume</button>
+    </form>
+
+    <div class="features">
+      <div class="feature">⚡ Fast</div>
+      <div class="feature">🤖 AI Based</div>
+      <div class="feature">📊 Smart Analysis</div>
+    </div>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById('resume');
+    const fileName = document.getElementById('fileName');
+    fileInput.addEventListener('change', function(){
+      fileName.textContent = this.files.length ? 'Selected: ' + this.files[0].name : 'No file selected';
+    });
+  </script>
+</body>
+</html>
+
+<!-- ye thoda km advance hai -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Resume Analyzer</title>
@@ -99,4 +173,4 @@
     </div>
 
 </body>
-</html>
+</html> -->
