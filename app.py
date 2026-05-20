@@ -33,6 +33,30 @@ def extract_text_from_docx(file_path):
 def home():
     return render_template('index.html')
 
+@app.route('/builder')
+def builder():
+    return render_template('builder.html')
+
+@app.route('/generate_resume', methods=['POST'])
+def generate_resume():
+
+    name = request.form['name']
+    email = request.form['email']
+    phone = request.form['phone']
+    skills = request.form['skills']
+    education = request.form['education']
+    projects = request.form['projects']
+
+    return render_template(
+        'generated_resume.html',
+        name=name,
+        email=email,
+        phone=phone,
+        skills=skills,
+        education=education,
+        projects=projects
+    )
+
 @app.route('/analyze', methods=['POST'])
 def analyze():
     file = request.files['resume']
