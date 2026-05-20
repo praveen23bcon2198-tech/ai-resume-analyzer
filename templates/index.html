@@ -4,55 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Resume Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .container{
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(12px);
+            padding: 40px;
+            width: 450px;
+            border-radius: 20px;
             text-align: center;
-            padding: 50px;
-        }
-
-        .container {
-            background: white;
-            padding: 30px;
-            width: 400px;
-            margin: auto;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        h1 {
-            color: #2c3e50;
-        }
-
-        input, button {
-            margin-top: 15px;
-            padding: 10px;
-            width: 90%;
-        }
-
-        button {
-            background: #007bff;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
             color: white;
-            border: none;
-            cursor: pointer;
         }
 
-        button:hover {
-            background: #0056b3;
+        .container h1{
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .container p{
+            margin-bottom: 25px;
+            font-size: 15px;
+            color: #e0e0e0;
+        }
+
+        .upload-box{
+            border: 2px dashed white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .upload-box:hover{
+            background: rgba(255,255,255,0.1);
+        }
+
+        input[type="file"]{
+            display: none;
+        }
+
+        .btn{
+            background: #00c6ff;
+            background: linear-gradient(to right, #0072ff, #00c6ff);
+            border: none;
+            padding: 12px 30px;
+            color: white;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover{
+            transform: scale(1.05);
+        }
+
+        .icon{
+            font-size: 50px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
+    <h2 style="color:red;">TEST PAGE CHANGED</h2>
 
     <div class="container">
+        <div class="icon">📄</div>
         <h1>AI Resume Analyzer</h1>
-        <p>Upload your resume (PDF or DOCX)</p>
+        <p>Upload your resume and get instant skill analysis</p>
 
         <form action="/analyze" method="post" enctype="multipart/form-data">
-            <input type="file" name="resume" required>
-            <br>
-            <button type="submit">Analyze Resume</button>
+            <label for="resume" class="upload-box">
+                Click to Upload Resume (PDF/DOCX)
+            </label>
+            <input type="file" id="resume" name="resume" required>
+            <button type="submit" class="btn">Analyze Resume</button>
         </form>
     </div>
 
