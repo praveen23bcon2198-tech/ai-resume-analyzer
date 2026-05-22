@@ -1,4 +1,240 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} - Resume</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:#0f172a;
+            padding:40px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
+        }
+
+        .resume{
+            width:850px;
+            max-width:100%;
+            background:white;
+            border-radius:20px;
+            overflow:hidden;
+            box-shadow:0 10px 35px rgba(0,0,0,0.35);
+            animation:fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(20px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        .top{
+            background:linear-gradient(135deg,#2563eb,#1e40af);
+            color:white;
+            padding:40px;
+            text-align:center;
+        }
+
+        .top h1{
+            font-size:42px;
+            margin-bottom:10px;
+        }
+
+        .top p{
+            font-size:16px;
+            opacity:0.9;
+            margin:5px 0;
+        }
+
+        .content{
+            padding:35px;
+        }
+
+        .section{
+            margin-bottom:30px;
+        }
+
+        .section h2{
+            font-size:24px;
+            color:#2563eb;
+            margin-bottom:15px;
+            border-bottom:2px solid #e2e8f0;
+            padding-bottom:8px;
+        }
+
+        .box{
+            background:#f8fafc;
+            padding:18px;
+            border-radius:14px;
+            line-height:1.8;
+            color:#334155;
+            font-size:15px;
+        }
+
+        .skills{
+            display:flex;
+            flex-wrap:wrap;
+            gap:12px;
+        }
+
+        .skill{
+            background:#2563eb;
+            color:white;
+            padding:10px 16px;
+            border-radius:30px;
+            font-size:14px;
+            font-weight:500;
+        }
+
+        .btns{
+            margin-top:35px;
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+
+        .btn{
+            padding:14px 28px;
+            border:none;
+            border-radius:40px;
+            cursor:pointer;
+            font-size:15px;
+            font-weight:600;
+            transition:0.3s;
+            text-decoration:none;
+        }
+
+        .download{
+            background:linear-gradient(to right,#00c853,#00e676);
+            color:#0f172a;
+        }
+
+        .back{
+            background:linear-gradient(to right,#2563eb,#1e40af);
+            color:white;
+        }
+
+        .btn:hover{
+            transform:translateY(-3px) scale(1.03);
+        }
+
+        @media(max-width:768px){
+
+            body{
+                padding:15px;
+            }
+
+            .top{
+                padding:30px 20px;
+            }
+
+            .top h1{
+                font-size:30px;
+            }
+
+            .content{
+                padding:20px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="resume">
+
+        <div class="top">
+
+            <h1>{{ name }}</h1>
+
+            <p>📧 {{ email }}</p>
+
+            <p>📱 {{ phone }}</p>
+
+        </div>
+
+        <div class="content">
+
+            <div class="section">
+
+                <h2>💡 Skills</h2>
+
+                <div class="skills">
+
+                    {% for skill in skills.split(',') %}
+
+                        <div class="skill">
+                            {{ skill }}
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            <div class="section">
+
+                <h2>🎓 Education</h2>
+
+                <div class="box">
+                    {{ education }}
+                </div>
+
+            </div>
+
+            <div class="section">
+
+                <h2>🚀 Projects</h2>
+
+                <div class="box">
+                    {{ projects }}
+                </div>
+
+            </div>
+
+            <div class="btns">
+
+                <button class="btn download" onclick="window.print()">
+                    📥 Download Resume
+                </button>
+
+                <a href="/" class="btn back">
+                    🔙 Back
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Generated Resume</title>
@@ -21,4 +257,4 @@
 <p>{{ projects }}</p>
 
 </body>
-</html>
+</html> -->
