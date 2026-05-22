@@ -38,7 +38,7 @@ def builder():
     return render_template('builder.html')
 
 @app.route('/generated_resume', methods=['POST'])
-def generate_resume():
+def generated_resume():
 
     name = request.form['name']
     email = request.form['email']
