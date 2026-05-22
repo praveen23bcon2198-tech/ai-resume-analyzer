@@ -1,4 +1,334 @@
 <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Builder</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='builder.css') }}">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#0f172a,#1e293b,#2563eb);
+            padding:20px;
+            overflow-x:hidden;
+        }
+
+        .container{
+            width:850px;
+            max-width:100%;
+            background:rgba(255,255,255,0.08);
+            backdrop-filter:blur(18px);
+            border:1px solid rgba(255,255,255,0.12);
+            border-radius:30px;
+            padding:40px;
+            color:white;
+            box-shadow:0 10px 40px rgba(0,0,0,0.35);
+            animation:fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(25px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        .title{
+            text-align:center;
+            margin-bottom:35px;
+        }
+
+        .title h1{
+            font-size:42px;
+            margin-bottom:10px;
+        }
+
+        .title p{
+            color:#cbd5e1;
+            font-size:15px;
+        }
+
+        .form-grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:20px;
+        }
+
+        .full-width{
+            grid-column:1/3;
+        }
+
+        .input-group{
+            display:flex;
+            flex-direction:column;
+        }
+
+        .input-group label{
+            margin-bottom:8px;
+            font-size:15px;
+            font-weight:500;
+            color:#e2e8f0;
+        }
+
+        input,
+        textarea{
+            width:100%;
+            padding:15px;
+            border:none;
+            outline:none;
+            border-radius:15px;
+            background:rgba(255,255,255,0.1);
+            color:white;
+            font-size:15px;
+            transition:0.3s;
+            border:1px solid transparent;
+        }
+
+        textarea{
+            resize:none;
+            min-height:120px;
+        }
+
+        input::placeholder,
+        textarea::placeholder{
+            color:#cbd5e1;
+        }
+
+        input:focus,
+        textarea:focus{
+            border:1px solid #38bdf8;
+            background:rgba(255,255,255,0.14);
+            transform:scale(1.01);
+        }
+
+        .btn{
+            margin-top:30px;
+            width:100%;
+            padding:16px;
+            border:none;
+            border-radius:18px;
+            background:linear-gradient(to right,#00c6ff,#0072ff);
+            color:white;
+            font-size:17px;
+            font-weight:600;
+            cursor:pointer;
+            transition:0.3s;
+            box-shadow:0 8px 25px rgba(0,114,255,0.35);
+        }
+
+        .btn:hover{
+            transform:translateY(-4px);
+            box-shadow:0 12px 30px rgba(0,114,255,0.45);
+        }
+
+        .features{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+            gap:15px;
+            margin-top:30px;
+        }
+
+        .feature-box{
+            background:rgba(255,255,255,0.08);
+            padding:18px;
+            border-radius:18px;
+            text-align:center;
+            border:1px solid rgba(255,255,255,0.1);
+            transition:0.3s;
+        }
+
+        .feature-box:hover{
+            transform:translateY(-5px);
+            background:rgba(255,255,255,0.12);
+        }
+
+        .feature-box h3{
+            margin-top:10px;
+            font-size:18px;
+        }
+
+        .feature-box p{
+            margin-top:8px;
+            font-size:13px;
+            color:#cbd5e1;
+            line-height:1.6;
+        }
+
+        @media(max-width:768px){
+
+            .form-grid{
+                grid-template-columns:1fr;
+            }
+
+            .full-width{
+                grid-column:auto;
+            }
+
+            .container{
+                padding:25px;
+            }
+
+            .title h1{
+                font-size:32px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="title">
+
+            <h1>📄 AI Resume Builder</h1>
+
+            <p>Create a professional ATS-friendly resume in seconds</p>
+
+        </div>
+
+        <form action="/generate_resume" method="POST">
+
+            <div class="form-grid">
+
+                <div class="input-group">
+
+                    <label>👤 Full Name</label>
+
+                    <input 
+                        type="text" 
+                        name="name" 
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>📧 Email Address</label>
+
+                    <input 
+                        type="email" 
+                        name="email" 
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+                <div class="input-group full-width">
+
+                    <label>📱 Phone Number</label>
+
+                    <input 
+                        type="text" 
+                        name="phone" 
+                        placeholder="Enter your phone number"
+                    >
+
+                </div>
+
+                <div class="input-group full-width">
+
+                    <label>💡 Skills</label>
+
+                    <textarea 
+                        name="skills" 
+                        placeholder="Example: Python, Flask, HTML, CSS, JavaScript"
+                    ></textarea>
+
+                </div>
+
+                <div class="input-group full-width">
+
+                    <label>🎓 Education</label>
+
+                    <textarea 
+                        name="education" 
+                        placeholder="Write your education details"
+                    ></textarea>
+
+                </div>
+
+                <div class="input-group full-width">
+
+                    <label>🚀 Projects</label>
+
+                    <textarea 
+                        name="projects" 
+                        placeholder="Describe your projects"
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn">
+                ✨ Generate Professional Resume
+            </button>
+
+        </form>
+
+        <div class="features">
+
+            <div class="feature-box">
+
+                <h3>⚡ Fast</h3>
+
+                <p>Create your resume instantly with AI-powered formatting.</p>
+
+            </div>
+
+            <div class="feature-box">
+
+                <h3>🎯 ATS Friendly</h3>
+
+                <p>Optimized for Applicant Tracking Systems and recruiters.</p>
+
+            </div>
+
+            <div class="feature-box">
+
+                <h3>📥 Download</h3>
+
+                <p>Print and download your resume easily in one click.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Resume Builder</title>
@@ -30,5 +360,5 @@
 
 </div>
 
-</body>
+</body> -->
 </html>
