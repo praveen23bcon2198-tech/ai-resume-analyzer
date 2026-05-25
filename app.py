@@ -31,7 +31,7 @@ def extract_text_from_docx(file_path):
 
 @app.route('/')
 def home():
-    return render_template('builder.html')
+    return render_template('index.html')
 
 @app.route('/builder')
 def builder():
