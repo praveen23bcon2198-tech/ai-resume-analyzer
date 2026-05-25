@@ -1,0 +1,22 @@
+.resume-btn button{
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.resume-btn button:hover{
+    transform: translateY(-3px) scale(1.05);
+    background: linear-gradient(135deg, #0072ff, #00c6ff);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.resume-btn button:active{
+    transform: scale(0.95);
+}
